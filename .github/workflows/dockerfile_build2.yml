@@ -1,4 +1,4 @@
-name: buildspinnakertest
+name: buildspinnakertestv 
 on:
   push:
     branches:
