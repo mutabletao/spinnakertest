@@ -2,7 +2,7 @@ name: spinnakerbuild2
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
