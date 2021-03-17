@@ -1,4 +1,4 @@
-name: spinnakerbuild2
+name: spinnakerbuild2 
 on:
   push:
     branches:
