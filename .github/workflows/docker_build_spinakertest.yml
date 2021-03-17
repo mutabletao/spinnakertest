@@ -1,0 +1,18 @@
+name: spinnakerbuild2
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: Build the Docker image
+        run: docker build -t jhbarneb/spinnakertest:latest .
+      - name: Tag the Docker image
+        run: docker tag jhbarneb/spinnakertest:latest jhbarneb/spinnakertest:1.0
+      - name: Push the Docker image to the registry
+        run: docker push jhbarneb/spinnakertest:1.0
