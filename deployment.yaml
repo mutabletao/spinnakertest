@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spinnakertest
+spec:
+  selector:
+    app: spinnakertest
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spinnakertest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spinnakertest
+  template:
+    metadata:
+      labels:
+        app: spinnakertest
+    spec:
+      containers:
+        - name: spinnakertest
+          image: jhbarneb/spinnakertest:latest
+          ports:
+            - containerPort: 3000
